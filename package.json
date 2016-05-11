@@ -1,0 +1,19 @@
+{
+  "name": "jsbuild",
+  "version": "1.0.0",
+  "description": "This is a project for testing gulp, webpack etc tools used for build javascript project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-swig": "^0.8.0",
+    "gulp-util": "^3.0.7",
+    "lodash": "^4.12.0",
+    "path": "^0.12.7",
+    "util": "^0.10.3"
+  }
+}
