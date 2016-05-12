@@ -23,12 +23,12 @@ gulp.task('html',function () {
         content:config.content
     };
     
-    const sources=gulp.src(['./scripts/**/*.js'],{read:false});
+    const sources=gulp.src([config.paths.dist+'/scripts/**/*.js'],{read:false});
     
     gulp.src(config.paths.html)
         .pipe(swig({data:swigData}))
-        .pipe(inject(sources))
+        .pipe(inject(sources,{ignorePath:'dist'}))
         .pipe(gulp.dest(config.paths.dist));
 });
 
-gulp.task('default',['html','js']);
+gulp.task('default',['js','html']);
