@@ -8,7 +8,7 @@ const util=require('util');
 const swig=require('gulp-swig');
 const concat=require('gulp-concat');
 const inject=require('gulp-inject');
-
+const del=require('del');
 const config=require('./gulpfile.config')();
 
 gulp.task('js',function () {
@@ -31,4 +31,11 @@ gulp.task('html',function () {
         .pipe(gulp.dest(config.paths.dist));
 });
 
-gulp.task('default',['js','html']);
+gulp.task('clean',function(){
+    
+    del([config.paths.dist]);
+});
+
+
+
+gulp.task('default',['clean']);
