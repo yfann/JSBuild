@@ -11,13 +11,17 @@ const inject=require('gulp-inject');
 const del=require('del');
 const config=require('./gulpfile.config')();
 
-gulp.task('js',function () {
-    gulp.src(config.paths.js)
+gulp.task('clean',function(){
+    return del([config.paths.dist]);
+});
+
+gulp.task('js',['clean'],function () {
+   return  gulp.src(config.paths.js)
         .pipe(concat('bundle.js'))
         .pipe(gulp.dest(config.paths.dist+'/scripts'));
 });
 
-gulp.task('html',function () {
+gulp.task('html',['js'],function () {
     const swigData={
         title:config.title,
         content:config.content
@@ -25,17 +29,14 @@ gulp.task('html',function () {
     
     const sources=gulp.src([config.paths.dist+'/scripts/**/*.js'],{read:false});
     
-    gulp.src(config.paths.html)
+   return gulp.src(config.paths.html)
         .pipe(swig({data:swigData}))
         .pipe(inject(sources,{ignorePath:'dist'}))
         .pipe(gulp.dest(config.paths.dist));
 });
 
-gulp.task('clean',function(){
-    
-    del([config.paths.dist]);
-});
 
 
+gulp.task('release',[]); //gulp release
 
-gulp.task('default',['clean']);
+gulp.task('default',['html']); //gulp
